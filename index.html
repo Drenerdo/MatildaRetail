@@ -1,0 +1,221 @@
+<html ng-app="mirrorApp">
+	<head>
+		<title>SmartMirror</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/weather-icons.css">
+		<link rel="stylesheet" type="text/css" href="font/font.css">
+        <!--link rel="stylesheet" type="text/css" href="css/notifications.css">
+        <link rel="stylesheet" type="text/css" href="css/amenities.css"-->
+        <link rel="stylesheet" href="WeatherAPI/WeatherStyle.css">
+		
+		<meta name="google" value="notranslate" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	</head>
+
+
+	<body onload="getLocation()" style="background: black;">
+  		<div class="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-6 time-date" ng-controller="dateCtrl">				
+				<div class="time">{{currDate | date:'hh:mm a'}}<!--span class="sec">{{currDate | date:'ss'}}</span-->
+				</div>
+					<div class="date small dimmed">{{currDate | date:'EEEE'}}</div>
+					<div class="date medium">{{currDate |date: 'd. MMMM yyyy'}}</div>
+				</div>
+				<div class="col-md-4">
+					<div class="col-md-6">
+						<div id="todayTempMax">
+							
+						</div>
+						<div id="todayTempMin">
+							
+						</div>						
+					</div>
+					<div class="col-md-6">
+						<div id="todayWeatherIcon">
+							
+						</div>
+					</div>
+					<div class="col-md-8">
+					<div id="todayWeatherDescription">
+							
+					</div>
+					
+					</div>
+				</div>
+			</div>
+			<div class="row">
+		    	<div class="col-md-4">
+		    		<div class="top-stories-title fontsforweb_fontid_12950">TOP NEWS STORIES</div>
+		    		<div id="rssdata">
+		    			<ul class="rss-items list-group"></ul>
+		    		</div>
+		    	</div>
+		    	<div class="col-md-4"></div>
+		    	<div class="col-md-4 seven-day-forecast">
+		    		<div class="sevenday-weather-title fontsforweb_fontid_12950">7-DAY WEATHER FORECAST</div>
+		    		<div class="col-md-4 forecast-day" id="day1"></div>
+		    		<div class="col-md-4 forecast-day" id="day2"></div>
+		    		<div class="col-md-4 forecast-day" id="day3"></div>
+		    		<div class="clear"></div>
+		    		<div class="col-md-4 forecast-day" id="day4"></div>
+		    		<div class="col-md-4 forecast-day" id="day5"></div>
+		    		<div class="col-md-4 forecast-day" id="day6"></div>
+		    		<div class="col-md-12">
+		    			<div class="current-traffic-title">CURRENT TRAFFIC</div>
+						<div id="map"></div>
+		    		</div>
+		    	</div>
+		    	<div class="col-md-4">
+					
+				</div>
+				<div class="col-md-4">
+					
+				</div>
+				<div class="col-md-4">
+					
+   					
+ 
+				</div>
+			</div>
+			<div class="row">
+				
+			</div>			
+        </div>
+			<!--div class="calendar xxsmall" style="display: block;" ng-controller="calCtrl">
+				<table class="xsmall calendar-table">
+					<tbody>
+						<tr style="opacity: {{1 - $index*(1 / events.length)}};" ng-repeat="event in events | orderBy:'timestamp'">
+							<td class="description">{{events.SUMMARY}}</td>
+							<td class="days dimmed"><span am-time-ago="event.timestamp"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="top right" ng-controller="WeatherCtrl">
+			<!--div class="windsun small dimmed" style="display: block;">
+				<span class="wi xdimmed wi-sprinkles"></span> {{weatherNow.main.humidity}}
+				<span class="wi xdimmed wi-strong-wind"></span> {{weatherNow.wind.speed | number:1}} 
+				<span class="wi xdimmed wi-sun{{weatherNow.sun.nextStatus}}"></span> {{weatherNow.sun.nextStatusTime * 1000 | date:'hh:mm'}}
+			</div>
+			<div class="temp" style="display: block;">
+				{{weatherNow.main.temp | number:1}}° F
+			</div>
+			<div class="forecast small dimmed" style="display: block;">
+				<table class="forecast-table">
+					<tbody>
+						<tr style="opacity: {{1 - $index*(1 / totalForecasts)}};"  ng-repeat="fc in weatherForecast">
+							<td class="forecast-day">{{fc.timestamp | date:'EEE'}} </td>
+							<td class="forecast-temp-max">{{fc.temp_max | number:0}}°</td>
+							<td class="forecast-icon"><span class="wi xdimmed wi-{{fc.icon}}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div-->
+
+			
+    
+      <!--div class="content-container main-container active-container">    
+        <div class="top-left-notification">
+            <span>Notifications</span>
+            <div class="notification">
+                <div class="icon"></div>
+                <h1>Amenities Request</h1>
+                <p>Your request is on it's way!</p>
+            </div>
+            <div class="notification">
+                <div class="icon"></div>
+                <h1>Clothing</h1>
+                <p>We got some new trending outfits in your closet!</p>
+            </div>
+            <div class="notification">
+                <div class="icon"></div>
+                <h1>Amenities Request</h1>
+                <p>Pillows are on the way!</p>
+            </div>
+        </div>
+        
+        <div class="right-music">
+            <!--span>Music</span-->
+        <!--/div>
+        
+        <div class="lower-third-left-amenities">
+            <span>Amenities</span>
+            <a href="page-amenities.html">Click</a>
+
+            <!-- <div class="wrapper">
+            	<img src="http://www.suitefolio.com/sflogo.png"/>
+            	<div id="bar"></div>
+            </div> -->
+
+            <!-- Adding a script that loads the amenities photos with animation -->
+        <!--/div>
+        
+        <div class="top-right-closet">
+            <span>Closet</span>
+            <a href="#" id="closet-trigger" data-linkTo="page-closet.html" data-container="closet-container">Click</a>
+        </div>
+
+
+    		<div class="center-ver center-hor">
+    			<div class="dishwasher light"></div>
+    		</div>
+    		<div class="lower-third-center-hor" ng-controller="messageCtrl" ng-show="{{messagesShow}}">
+    			<div class="message light"></div>
+    		</div-->
+      </div>
+
+      <div class="content-container closet-container loaded"></div>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="WeatherAPI/WeatherWidget.js"></script>
+        <script src="js/main.js"></script>
+		<script src="js/ical_parser.js"></script>
+		<script src="js/moment-with-langs.min.js"></script>
+		<script src="config.js"></script>
+		<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+		<script src="http://code.angularjs.org/1.2.9/angular-resource.min.js"></script>
+		<script src="http://code.angularjs.org/1.2.9/angular-animate.min.js"></script>
+		<script src="js/angular-locale_en-us.js"></script>
+		<script src="js/angular-moment.min.js"></script>
+        <!--script src="js/notification.js"></script-->
+        <!--script src="js/amenities.js"></script-->
+        <script src="controllers.js"></script>
+  		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJIgPSUY1JD-0Yo26JNrTqTDNkdqjZiCE	
+&callback=initMap&signed_in=true" async defer></script>
+    	<script type="text/javascript">
+    		
+    		$('#rssdata').ready(function () {
+	    	$.ajax({
+	        url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=4&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss',
+	        dataType: 'jsonp',
+	        success: function (data) {
+	            //console.log(data.feed.entries);
+	            $(data.responseData.feed.entries).each(function (index, entry) {
+	            	$table = $(entry.content);
+	            	image = $table.find("img")[0];
+	            	var item_html = $('<li class="row list-group-item">');
+	            	var newshtml  = $('<div class="col-md-9"><a style="font-size:18px;" class="fontsforweb_fontid_12950" target="_blank" href="' + entry.link + '">' + entry.title + '</a></div>');
+	                image_div = $("<div class='col-md-3'></div>");
+	                image_div.append(image);
+	            	item_html.append(image_div);
+	            	item_html.append(newshtml);
+	            	$('#rssdata ul.rss-items').append(item_html);
+
+            });
+            $('#rssdata div.loading').fadeOut();
+            $('#rssdata ul.rss-items').slideDown();
+        },
+        error: function () {}
+
+    });
+});
+
+    	</script>
+	</body> 
+</html>

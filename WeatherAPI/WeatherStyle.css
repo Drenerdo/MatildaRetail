@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+
+#day1,#day2,#day3,#day4,#day5,#day6
+{
+	color:blue;
+	
+	font-size: 26px !important;
+}
+.myTable {
+	width: 400px;
+	background-color: #eee;
+	border-collapse: collapse;
+}
+
+.myTable th {
+	background-color: #000;
+	color: white;
+	width: 50%;
+}
+
+.myTable td, .myTable th {
+	padding: 5px;
+	border: 1px solid #000;
+}	
+.ForeCastTable {
+	border-collapse: collapse;
+}
+
+.ForeCastTable th {
+	background-color: #000;
+	color: white;
+	width: 20%;
+	table-layout: fixed;
+}
+
+.ForeCastTable td,.ForeCastTable th {
+	padding: 5px;
+	border: 1px solid #000;
+}

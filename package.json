@@ -1,0 +1,17 @@
+{
+  "name": "Smartmirror",
+  "version": "0.0.1",
+  "description": "A smartmirror displaying all of your based needs",
+  "author": "Andre Smith",
+  "private": true,
+  "dependencies": {
+    "angular-spotify": "^1.2.1",
+    "envy": "git://github.com/geraldbaeck/node-envy.git",
+    "express": "*",
+    "google-auth-library": "*",
+    "googleapis": "*",
+    "node-static": "*",
+    "request": "*",
+    "twitter": "*"
+  }
+}
